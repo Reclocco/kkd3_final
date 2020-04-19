@@ -1,31 +1,12 @@
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-import com.google.common.collect.ImmutableBiMap;
-
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 public class MyDictionary {
-    //    private Dictionary<java.io.Serializable, Integer> dictionary;
     private BiMap<String, Integer> dictionary;
-    private int counter;
+    public int counter;
     private int wordSize;
-//    private MyDecoder decoder = null;
-
-//    public MyDictionary(MyDecoder decoder){
-//        this.decoder = decoder;
-//        dictionary = new Hashtable<>();
-//        counter = 0;
-//        wordSize = 9;
-//
-//        for(int i=0; i<256; i++){
-//            dictionary.put(String.valueOf((char) i), i);
-//        }
-//        counter = 256;
-//    }
 
     public MyDictionary() {
-//        dictionary = new Hashtable<>();
         dictionary = HashBiMap.create();
         counter = 0;
         wordSize = 9;
@@ -39,6 +20,16 @@ public class MyDictionary {
     public void addWord(String word) {
         counter++;
         if ((double) counter == Math.pow(2, wordSize)) {
+            System.out.println("INCREASING WORD SIZE");
+            wordSize++;
+        }
+
+        dictionary.put(word, counter);
+    }
+    public void addWordDec(String word) {
+        counter++;
+        if ((double) counter+1 == Math.pow(2, wordSize)) {
+            System.out.println("INCREASING WORD SIZE");
             wordSize++;
         }
 

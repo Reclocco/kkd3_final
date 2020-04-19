@@ -22,7 +22,7 @@ public class MyEncoder {
         File file2 = new File(encoded);
 
 //        System.out.println("Entropia: " + huffTree.getEntropy());
-//        System.out.println("Kompresja: " + 1.0*file2.length()/file1.length());
+        System.out.println("Kompresja: " + 1.0*file2.length()/file1.length());
 //        System.out.println("Srednia długość słowa kodowego: " + huffTree.getAverage());
     }
 
@@ -32,32 +32,31 @@ public class MyEncoder {
         byte[] fileContent = Files.readAllBytes(Paths.get(raw));
 
         int idx = 0;
-//        String prev = null;
         StringBuilder text = new StringBuilder();
-//        System.out.println("text: " + text);
+        System.out.println("text: " + text);
 
         while(idx < fileContent.length){
             text.append((char) fileContent[idx]);
             idx++;
 
             if(dictionary.getKey(text.toString()) == null){
-//                System.out.println("not found: " + text.toString());
-//                System.out.println("encoding text: " + text.toString().substring(0, text.length()-1) + ", with code: " + dictionary.getKey(text.toString().substring(0, text.length()-1)) + ", dec: " + Integer.parseInt(dictionary.getKey(text.toString().substring(0, text.length()-1)), 2));
+                System.out.println("not found: " + text.toString());
+                System.out.println("encoding text: " + text.toString().substring(0, text.length()-1) + ", with code: " + dictionary.getKey(text.toString().substring(0, text.length()-1)) + ", dec: " + Integer.parseInt(dictionary.getKey(text.toString().substring(0, text.length()-1)), 2));
                 codeBuilder.append(dictionary.getKey(text.toString().substring(0, text.length()-1)));
-//                System.out.println("adding to dict: " + text.toString() + ", with num: " + (dictionary.getCounter()+1));
+                System.out.println("adding to dict: " + text.toString() + ", with num: " + (dictionary.getCounter()+1));
                 dictionary.addWord(text.toString());
                 text = new StringBuilder();
                 idx--;
             }
-//            else {
-//                System.out.println("found in dictionary: " + text.toString());
-//            }
+            else {
+                System.out.println("found in dictionary: " + text.toString());
+            }
         }
 
         if(text.length() != 0)
             codeBuilder.append(dictionary.getKey(text.toString()));
 
-        int dingling = codeBuilder.length() % 8;
+        int dingling = (8 - codeBuilder.length() % 8) % 8;
         for(int i=0; i<dingling; i++){
             codeBuilder.append("0");
         }
@@ -71,7 +70,8 @@ public class MyEncoder {
             os.write(b);
         }
 
-//        System.out.println("ENCODED: " + code);
+        System.out.println("ENCODED: " + code);
+        System.out.println("ENCODED LEN: " + code.length());
 
         os.close();
         printStats();

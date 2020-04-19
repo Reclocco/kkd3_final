@@ -34,39 +34,45 @@ public class MyDecoder {
 
         String code = codeBuilder.toString();
 
-//        System.out.println("DECODED: " + code);
+        System.out.println("DECODED: " + code);
+        System.out.println("DECODED LEN: " + code.length());
 
         OutputStream os = new FileOutputStream(decoded);
 
         int idx=0;
         String prev = null;
+//        dictionary.counter++;
 
         while(true){
             try{
                 int id = Integer.parseInt(code.substring(idx, idx+dictionary.getWordSize()), 2);
                 idx+=dictionary.getWordSize();
 
-//                System.out.println("Word ID: " + id);
-
+                System.out.print("Word ID: " + id + "\n");
                 try{
+                    System.out.print("WORD: " + dictionary.getWord(id) + "\n");
                     for(char e: dictionary.getWord(id).toCharArray())
                         os.write(e);
 
-                    if(prev != null)
-                        dictionary.addWord(prev + dictionary.getWord(id).charAt(0));
+                    if(prev != null) {
+                        System.out.print("IM ADDING TO DICT: " + prev + dictionary.getWord(id).charAt(0) + ", with no: " + (dictionary.getCounter()+1) + "\n");
+                        dictionary.addWordDec(prev + dictionary.getWord(id).charAt(0));
+                    }
 
-                    prev = dictionary.getWord(id);
                 } catch (NullPointerException e) {
                     assert prev != null;
-                    dictionary.addWord(prev + prev.charAt(0));
+                    System.out.print("ADDING TO DICT: " + prev + prev.charAt(0) + ", with no: " + (dictionary.getCounter()+1) + "\n");
+                    dictionary.addWordDec(prev + prev.charAt(0));
+//                    id = Integer.parseInt(code.substring(idx, idx+dictionary.getWordSize()), 2);
+                    System.out.println("WORD: " + dictionary.getWord(id));
 
                     for(char c: dictionary.getWord(id).toCharArray())
                         os.write(c);
                 }
+                prev = dictionary.getWord(id);
+                System.out.println("\n");
 
-
-
-            } catch (IndexOutOfBoundsException e){
+            } catch (StringIndexOutOfBoundsException e){
                 break;
             }
         }
