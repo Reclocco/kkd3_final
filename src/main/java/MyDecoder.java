@@ -49,12 +49,12 @@ public class MyDecoder {
                         os.write(e);
 
                     if(prev != null) {
-                        dictionary.addWordDec(prev + dictionary.getWord(id).charAt(0));
+                        dictionary.addWordDecode(prev + dictionary.getWord(id).charAt(0));
                     }
 
                 } catch (NullPointerException e) {
                     assert prev != null;
-                    dictionary.addWordDec(prev + prev.charAt(0));
+                    dictionary.addWordDecode(prev + prev.charAt(0));
 
                     for(char c: dictionary.getWord(id).toCharArray())
                         os.write(c);

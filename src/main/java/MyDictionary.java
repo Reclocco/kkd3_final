@@ -3,6 +3,7 @@ import com.google.common.collect.HashBiMap;
 
 public class MyDictionary {
     private BiMap<String, Integer> dictionary;
+//    private BiMap<String, int[]> stat;
     public int counter;
     private int wordSize;
 
@@ -24,8 +25,28 @@ public class MyDictionary {
         }
 
         dictionary.put(word, counter);
+//        stat.put(word, new int[]{counter, 1});
     }
-    public void addWordDec(String word) {
+
+//    public void incWeight(String word){
+//        int[] key = stat.get(word);
+//        key[1]++;
+//        stat.replace(word, key);
+//    }
+
+//    public double getEntropy(){
+//        double entropy = 0;
+//        int sum = 0;
+//        for(int[] key: stat.values())
+//            sum += key[1];
+//
+//        for(int[] key: stat.values())
+//            entropy -= key[1]*1.0/sum * (Math.log(key[1]*1.0/sum));
+//
+//        return entropy;
+//    }
+
+    public void addWordDecode(String word) {
         counter++;
         if ((double) counter+1 == Math.pow(2, wordSize)) {
             wordSize++;
