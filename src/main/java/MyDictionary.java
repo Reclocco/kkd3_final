@@ -20,7 +20,6 @@ public class MyDictionary {
     public void addWord(String word) {
         counter++;
         if ((double) counter == Math.pow(2, wordSize)) {
-            System.out.println("INCREASING WORD SIZE");
             wordSize++;
         }
 
@@ -29,7 +28,6 @@ public class MyDictionary {
     public void addWordDec(String word) {
         counter++;
         if ((double) counter+1 == Math.pow(2, wordSize)) {
-            System.out.println("INCREASING WORD SIZE");
             wordSize++;
         }
 
@@ -61,9 +59,5 @@ public class MyDictionary {
 
     public int getWordSize() {
         return wordSize;
-    }
-
-    public int getCounter() {
-        return counter;
     }
 }
