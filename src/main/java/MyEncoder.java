@@ -103,10 +103,8 @@ public class MyEncoder {
         for(int i=0; i<code.length()/8; i++){
             int num = Integer.parseInt(code.substring(i*8, i*8+8), 2)-128;
 
-            for(byte b: fileContent){
-                int count = statEncode.get((int) b);
-                statEncode.put((int) b, count + 1);
-            }
+            int count = statEncode.get(num);
+            statEncode.put(num, count + 1);
 
             byte b = (byte) num;
             os.write(b);
