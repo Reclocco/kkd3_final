@@ -9,11 +9,14 @@ public class MyDecoder {
     String decoded;
     MyDictionary dictionary;
 
-    public MyDecoder() throws IOException {
+    public MyDecoder(String encoded, String decoded) throws IOException {
         dictionary = new MyDictionary();
 
-        encoded = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\encoded.txt";
-        decoded = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\decoded.txt";
+//        encoded = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\encoded.txt";
+//        decoded = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\decoded.txt";
+
+        this.encoded = encoded;
+        this.decoded = decoded;
     }
     public void decode() throws IOException {
         StringBuilder codeBuilder = new StringBuilder();

@@ -13,7 +13,7 @@ public class MyEncoder {
     HashMap<Integer, Integer> statRaw;
     HashMap<Integer, Integer> statEncode;
 
-    public MyEncoder() {
+    public MyEncoder(String raw, String encoded) {
         dictionary = new MyDictionary();
 
         statRaw = new HashMap<>();
@@ -26,8 +26,11 @@ public class MyEncoder {
             statEncode.put(i, 0);
         }
 
-        raw = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\raw.txt";
-        encoded = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\encoded.txt";
+//        raw = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\raw.txt";
+//        encoded = "C:\\Users\\micha\\Desktop\\Projekty\\4sem\\kkd3_maven\\encoded.txt";
+
+        this.raw = raw;
+        this.encoded = encoded;
     }
 
     private void printStats(){
